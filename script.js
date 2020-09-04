@@ -1,7 +1,9 @@
-// assignment Code
+// assignment code.
+
 var generateBtn = document.querySelector("#generate");
 
-// write password to the #password input
+// write password to the #password input.
+
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -10,115 +12,78 @@ function writePassword() {
 }
 
 
+// variables listed in arrays. 
 
-//variables in string format
-
-//var lower = "abcdefghijklmnopqrstuvwxyz"
-//var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-//var numeric = "0123456789"
-//var special = " !#$%&'()*+,-./:;<=>?@[\]^_`{|}~" 
-//variables in arrays (eyesore lol)
 var numeric = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 var special = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "~", "_", "-"];
 var upper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var lower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
+// begin the password generation.
 
+function generatePassword() {
+  userSelections = []
 
+  // prompt user to choose a password length between 8 and 128.
 
-//var userChoices = [numeric, special, lower, upper];
+  var passLength = parseInt(prompt("Choose a number between 8 and 128 for the length of your password."));
+  while (passLength < 8 || passLength > 128 || isNaN(passLength) === true) {
 
-var randomNumeric = numeric[Math.floor(Math.random() * numeric.length)];
-var randomSpecial = special[Math.floor(Math.random() * special.length)];
-var randomUpper = upper[Math.floor(Math.random() * lower.length)];
-var randomLower = lower[Math.floor(Math.random() * upper.length)];
+    // if user inputs numbers outside of the required length, or inputs a symbol/letter, prompt them to choose a valid number.
 
-
-function generatePassword(length, userChoices) {
-  var length = parseInt(prompt("Choose a number between 8 and 128 for the length of your password."));
-  while (length < 8 || length > 128) {
     alert("Please choose a valid number.");
-    i--;
-  }
-  //receive numeric
-
-  //userchoices
-  //confirm use of special characters
-  var special = confirm("Do you want to use special characters?");
-  //confirm use of upper
-  var upper = confirm("Do you want to use upper case characters?");
-  //confirm use of lower
-  var lower = confirm("Do you want to use lower case character?");
-  // combine value of password length with the "true" confirms
-
-  var userChoices = {
-    numericSpecial = numeric.concat(special),
-
-    numericUpper = numeric.concat(upper),
-
-    numericLower = numeric.concat(lower),
-
-    specialUpper = special.concat(upper),
-
-    specialLower = uppers.concat(lower),
-
-    upperLower = upper.concat(lower),
-
-    notSpecial = lower.concat(upper.numeric),
-
-    notNumeric = lower.concat(upper.special),
-
-    notUpper = numeric.concat(special.lower),
-
-    notLower = numeric.concat(special.upper),
-
-    allTypes = numeric.concat(special.upper.lower),
+    var passLength = parseInt(prompt("Choose a number between 8 and 128 for the length of your password."));
   }
 
+// a series of questions confirming if the user would like to use numbers, special characters, upper case and/or lower case characters
+// if they select none, no password is generated and the form will be reset.
+
+  var numericQuestion = confirm("Do you want to use numeric characters?");
+
+  if (numericQuestion === true) {
+    userSelections = userSelections.concat(numeric)
+  };
+
+  var specialQuestion = confirm("Do you want to use special characters?");
+
+  if (specialQuestion === true) {
+    userSelections = userSelections.concat(special)
+  };
+
+  var upperQuestion = confirm("Do you want to use upper case characters?");
+
+  if (upperQuestion === true) {
+    userSelections = userSelections.concat(upper)
+  };
+
+  var lowerQuestion = confirm("Do you want to use lower case characters?");
+
+  if (lowerQuestion === true) {
+    userSelections = userSelections.concat(lower)
+  }
+
+  if (!numericQuestion && !specialQuestion && !upperQuestion && !lowerQuestion) {
+    alert("You need to select at least one character type!");
+    reset();
+  }
+
+  var result = ""
+
+// a random password is generated here, based on the users selections.
+
+  for (i = 0; i < passLength; i++) {
+    result += userSelections[Math.floor(Math.random() * userSelections.length)];
+  }
+  return result;
+}
 
 
+// add event listener to generate button.
 
-
-
-
-
-
-
-
-
-
-// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 
 
 
-
-
-
-
-//ORDER
-
-
-//--------Click Button Generates Prompt -----------//
-
-
-//--------Asks Password Length, Which determines Length -----------//
-
-//--------After That: FOR loop confirming it's 8 or greater and 128 or less (numerics) -----------//
-
-// alert("You must choose number between 8 and 128")
-
-//--------Confirm use of special characters -----------//
-
-//--------Confirm use of  lower case -----------//
-
-//--------Confirm use of upper case -----------//
-
-//if all four were false then .. alert("You must choose at least one type of character to build a password!")
-
-// if you  do i-- it will send it to the first prompt
-
-//------Randomly Generate Password up to length that user gives-----//
 
 
