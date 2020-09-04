@@ -26,13 +26,13 @@ function generatePassword() {
 
   // prompt user to choose a password length between 8 and 128.
 
-  var passLength = parseInt(prompt("Choose a number between 8 and 128 for the length of your password."));
+  var passLength = parseInt(prompt("Choose a number between 8 and 128 for your password length."));
   while (passLength < 8 || passLength > 128 || isNaN(passLength) === true) {
 
     // if user inputs numbers outside of the required length, or inputs a symbol/letter, prompt them to choose a valid number.
 
     alert("Please choose a valid number.");
-    var passLength = parseInt(prompt("Choose a number between 8 and 128 for the length of your password."));
+    var passLength = parseInt(prompt("Choose a number between 8 and 128 for your password length."));
   }
 
 // a series of questions confirming if the user would like to use numbers, special characters, upper case and/or lower case characters
