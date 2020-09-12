@@ -28,6 +28,7 @@ For this project I created a random password generator that presents the user wi
 
 &nbsp;
 
+
 ### Collaborators:
 James Lamb
 &nbsp;
