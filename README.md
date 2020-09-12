@@ -16,6 +16,7 @@ For this project I created a random password generator that presents the user wi
 
 
 -----------
+
 &nbsp;
 
 ![Random Password Generator](random_pass_generator.jpg)
